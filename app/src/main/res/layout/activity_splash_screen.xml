@@ -10,59 +10,53 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="1">
+        android:layout_height="match_parent"
+        android:layout_weight="9"
+        android:gravity="center">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:id="@+id/texto"
-            android:layout_marginTop="20dp"
-            android:text="UNAH PERRONA"
-            android:textColor="#044180"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:text="UNAH-TEC Map"
+            android:layout_gravity="center"
+            android:textColor="#E4031334"
+            android:textSize="36sp"
+            android:textStyle="bold|italic"
+           />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="8">>
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        android:layout_gravity="center">
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="600dp"
-            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="60px"
+            android:layout_gravity="center"
             android:id="@+id/boton"
-            android:background="@drawable/unahtecmap"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/texto" />
+            android:background="@drawable/logoperron"/>
     </LinearLayout>
 
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">>
+        android:layout_height="match_parent"
+        android:layout_weight="9"
+        android:gravity="center">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:id="@+id/texto2"
-            android:text="LA MERA PIJA"
-            android:textAllCaps="true"
+            android:text="Sientete como en casa"
             android:textColor="#E4031334"
-            android:textSize="36sp"
-            android:textStyle="bold|italic"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:textSize="25sp"
+            android:textStyle="bold|italic" />
     </LinearLayout>
 
 
