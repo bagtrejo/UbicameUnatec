@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Proyecto Ubicacion</string>
+
+    <string-array name="edificios">
+        <item>Aula 101</item>
+        <item>Aula 102</item>
+        <item>Aula 103</item>
+        <item>Aula 104</item>
+        <item>Aula 105</item>
+    </string-array>
 </resources>
+
+
+
