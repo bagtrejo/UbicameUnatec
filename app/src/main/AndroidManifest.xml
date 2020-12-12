@@ -9,15 +9,16 @@
         android:roundIcon="@mipmap/favicon"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoUbicacion">
-
-        <activity android:name=".SplashScreen">
+        <activity android:name=".Activities.DetalleUbicacionActivity"></activity>
+        <activity android:name=".Activities.PrincipalActivity"></activity>
+        <activity android:name=".Activities.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".Activities.MainActivity" />
     </application>
 
 </manifest>
