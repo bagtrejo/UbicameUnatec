@@ -7,6 +7,7 @@ import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -44,15 +45,24 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ListAdapter.ViewHolder holder, int position) {
         holder.bindData(mData.get(position));
 
-        holder.cardView.setOnClickListener(new View.OnClickListener(){
+//        holder.cardView.setOnClickListener(new View.OnClickListener(){
+//
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
 
+        holder.verMas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(context, DetalleUbicacionActivity.class);
                 intent.putExtra("posicion", position);
                 intent.putExtra("titulo", mData.get(position).getTitulo());
                 intent.putExtra("descripcion", mData.get(position).getDescripcion());
                 context.startActivity(intent);
+
             }
         });
 
@@ -68,11 +78,13 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         CardView cardView;
+        Button verMas;
         ImageView imagen;
         TextView titulo, descripcion;
 
         ViewHolder(View itemView){
             super(itemView);
+            verMas = itemView.findViewById(R.id.btnVerMas);
             cardView = itemView.findViewById(R.id.cardUbicacion);
             imagen = itemView.findViewById(R.id.imagen);
             titulo = itemView.findViewById(R.id.txtTitulo);
