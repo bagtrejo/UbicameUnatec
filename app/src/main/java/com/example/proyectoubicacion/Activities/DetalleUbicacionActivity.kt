@@ -13,7 +13,7 @@ class DetalleUbicacionActivity : AppCompatActivity() {
         val posicion: Int = intent.getIntExtra("posicion", 0);
         val titulo: String? = intent.getStringExtra("titulo");
         val descripcion: String? = intent.getStringExtra("descripcion");
-        System.out.println(descripcion);
+        System.out.println(titulo);
 
     }
 }
