@@ -62,6 +62,7 @@
                 android:layout_margin="8dp"
                 android:orientation="horizontal">
 
+
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnVerMas"
                     style="?attr/borderlessButtonStyle"
