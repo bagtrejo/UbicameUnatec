@@ -2,12 +2,12 @@ package com.example.proyectoubicacion.Adaptadores;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,14 +17,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyectoubicacion.Activities.DetalleUbicacionActivity;
 import com.example.proyectoubicacion.Activities.ListElement;
-import com.example.proyectoubicacion.Activities.PrincipalActivity;
 import com.example.proyectoubicacion.R;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
+public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> implements Filterable {
 
     private List<ListElement> mData;
+    private List<ListElement> mDataAll;
     private LayoutInflater mInflater;
     private Context context;
 
@@ -32,6 +34,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
         this.mData = itemList;
+        this.mDataAll = new ArrayList<>(itemList);
     }
 
     @NonNull
@@ -43,7 +46,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ListAdapter.ViewHolder holder, int position) {
-        holder.bindData(mData.get(position));
+     //   holder.bindData(mData.get(position));
 
 //        holder.cardView.setOnClickListener(new View.OnClickListener(){
 //
@@ -74,6 +77,44 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     public int getItemCount() {
         return mData.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return filter;
+    }
+    Filter filter = new Filter() {
+        @Override
+        //run on background thread
+        protected FilterResults performFiltering(CharSequence charSequence) {
+
+            List<ListElement> filteredList = new ArrayList<>();
+            if(charSequence.toString().isEmpty()){
+                filteredList.addAll(mDataAll);
+            }else{
+                for(ListElement movie: mDataAll){
+
+                        filteredList.add(movie);
+
+                }
+            }
+
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = filteredList;
+            return filterResults;
+        }
+        //corre solo un hilo
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            mData.clear();
+            mDataAll.addAll((Collection<? extends ListElement>) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
+
+
+
+
+
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
