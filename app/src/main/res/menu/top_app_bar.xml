@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <item
+        android:id="@+id/action_search"
+        android:title="buscar"
+        android:contentDescription="mas"
+        app:showAsAction="always|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        />
+    <item
+        android:id="@+id/item1"
+        android:title="desarrolladores"
+        app:showAsAction="never"
+        android:icon="@drawable/baseline_menu_black_18dp"/>
+    <item
+        android:id="@+id/acerca_de"
+        android:title="Acerca de"
+        app:showAsAction="never"
+        android:icon="@drawable/baseline_menu_black_18dp"/>
+    <item
+        android:id="@+id/salir"
+        android:title="Salir"
+        app:showAsAction="never"
+        android:icon="@drawable/baseline_menu_black_18dp"/>
+</menu>
