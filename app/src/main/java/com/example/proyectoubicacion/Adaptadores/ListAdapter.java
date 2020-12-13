@@ -46,7 +46,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
 
     @Override
     public void onBindViewHolder(@NonNull ListAdapter.ViewHolder holder, int position) {
-     //   holder.bindData(mData.get(position));
+        holder.bindData(mData.get(position));
 
 //        holder.cardView.setOnClickListener(new View.OnClickListener(){
 //
