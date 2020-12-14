@@ -23,6 +23,8 @@ import com.example.proyectoubicacion.Acerca_de;
 import com.example.proyectoubicacion.Activities.ListElement;
 import com.example.proyectoubicacion.Adaptadores.ListAdapter;
 import com.example.proyectoubicacion.R;
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,16 +35,47 @@ public class PrincipalActivity extends AppCompatActivity{
     ListAdapter listAdapter;
     SearchView svSearch;
     private Context context;
+    FloatingActionsMenu btn_grupoDeBotones;
+    FloatingActionButton btn_desarrolladores, btn_salir, btn_acerca;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
 
+        btn_desarrolladores = findViewById(R.id.desarrolladores);
+        btn_acerca =findViewById(R.id.acerca_de);
+        btn_salir = findViewById(R.id.salirr);
+        btn_grupoDeBotones = findViewById(R.id.boton);
+
 //        svSearch = findViewById(R.id.svSearch);
 
 
         initValues();
+
+        btn_desarrolladores.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PrincipalActivity.this, Desarrolladores.class);
+                startActivity(intent);
+            }
+        });
+        btn_acerca.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PrincipalActivity.this, Acerca_de.class);
+                startActivity(intent);
+            }
+        });
+
+        btn_salir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.exit(0);
+            }
+        });
+
 
     }
 
