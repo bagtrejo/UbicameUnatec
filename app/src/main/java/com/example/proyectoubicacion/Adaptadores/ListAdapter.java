@@ -2,6 +2,7 @@ package com.example.proyectoubicacion.Adaptadores;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,19 +23,21 @@ import com.example.proyectoubicacion.R;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> implements Filterable {
 
-    private List<ListElement> mData;
-    private List<ListElement> mDataAll;
+    private List<ListElement> items;
+    private List<ListElement> originalItems;
     private LayoutInflater mInflater;
     private Context context;
 
-    public ListAdapter(List<ListElement> itemList, Context context){
+    public ListAdapter(List<ListElement> items, Context context){
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
-        this.mData = itemList;
-        this.mDataAll = new ArrayList<>(itemList);
+        this.items = items;
+        this.originalItems = new ArrayList<>(items);
+
     }
 
     @NonNull
@@ -46,7 +49,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
 
     @Override
     public void onBindViewHolder(@NonNull ListAdapter.ViewHolder holder, int position) {
-        holder.bindData(mData.get(position));
+        holder.bindData(items.get(position));
 
 //        holder.cardView.setOnClickListener(new View.OnClickListener(){
 //
@@ -62,8 +65,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
 
                 Intent intent = new Intent(context, DetalleUbicacionActivity.class);
                 intent.putExtra("posicion", position);
-                intent.putExtra("titulo", mData.get(position).getTitulo());
-                intent.putExtra("descripcion", mData.get(position).getDescripcion());
+                intent.putExtra("titulo", items.get(position).getTitulo());
+                intent.putExtra("descripcion", items.get(position).getDescripcion());
+                intent.putExtra("imagen", items.get(position).getImagen());
+                intent.putExtra("imagen2", items.get(position).getImagen2());
+                intent.putExtra("imagen3", items.get(position).getImagen3());
                 context.startActivity(intent);
 
             }
@@ -71,50 +77,103 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
 
     }
 
-    public void setItems(List<ListElement> items){mData = items;}
+    public void setItems(List<ListElement> items){items = items;}
 
     @Override
     public int getItemCount() {
-        return mData.size();
+        return items.size();
     }
 
-    @Override
-    public Filter getFilter() {
-        return filter;
+    public Filter getFilter(){
+        return exampleFilter;
     }
-    Filter filter = new Filter() {
+
+    private Filter exampleFilter = new Filter() {
         @Override
-        //run on background thread
-        protected FilterResults performFiltering(CharSequence charSequence) {
-
+        protected FilterResults performFiltering(CharSequence constraint) {
             List<ListElement> filteredList = new ArrayList<>();
-            if(charSequence.toString().isEmpty()){
-                filteredList.addAll(mDataAll);
+
+            if(constraint == null || constraint.length() == 0){
+                filteredList.addAll(originalItems);
             }else{
-                for(ListElement movie: mDataAll){
+                String filterPattern = constraint.toString().toLowerCase().trim();
 
-                        filteredList.add(movie);
-
+                for (ListElement item: originalItems) {
+                    if (item.getTitulo().toLowerCase().contains(filterPattern)){
+                        filteredList.add(item);
+                    }
                 }
             }
 
-            FilterResults filterResults = new FilterResults();
-            filterResults.values = filteredList;
-            return filterResults;
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
         }
-        //corre solo un hilo
+
         @Override
-        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-            mData.clear();
-            mDataAll.addAll((Collection<? extends ListElement>) filterResults.values);
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            items.clear();
+            items.addAll((List) results.values);
             notifyDataSetChanged();
         }
     };
 
+//    public void filter (final String strSearch){
+//        if(strSearch.length() == 0){
+//            items.clear();
+//            items.addAll(originalItems);
+//        }
+//        else{
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//                items.clear();
+//                List<ListElement> collect = originalItems.stream()
+//                        .filter(i -> i.getTitulo().toLowerCase().contains(strSearch))
+//                        .collect(Collectors.toList());
+//
+//                items.addAll(collect);
+//            }
+//            else{
+//                items.clear();
+//                for (ListElement i: originalItems) {
+//                    if (i.getTitulo().toLowerCase().contains(strSearch)){
+//                        items.add(i);
+//                    }
+//
+//                }
+//            }
+//        }
+//        notifyDataSetChanged();
+//    }
 
-
-
-
+//    @Override
+//    public Filter getFilter() {
+//        return new Filter() {
+//            @Override
+//            protected FilterResults performFiltering(CharSequence constraint) {
+//                final FilterResults oReturn = new FilterResults();
+//                final List<ListElement> results = new ArrayList<>();
+//                if (originalItems == null)
+//                    originalItems  = items;
+//                if (constraint != null){
+//                    if(originalItems!=null & originalItems.size()>0 ){
+//                        for ( final ListElement g :originalItems) {
+//                            if (g.getTitulo().toLowerCase().contains(constraint.toString()))results.add(g);
+//                        }
+//                    }
+//                    oReturn.values = results;
+//                }
+//                return oReturn;
+//            }
+//
+//            @Override
+//            protected void publishResults(CharSequence constraint, FilterResults results) {
+//                items = (ArrayList<ListElement>)results.values;
+//                notifyDataSetChanged();
+//
+//            }
+//        };
+//    }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
