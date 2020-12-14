@@ -9,23 +9,22 @@
         android:roundIcon="@mipmap/favicon"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoUbicacion">
-        <activity android:name=".acercaDe"></activity>
-        <activity android:name=".Acerca_de" />
+
+        <activity android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" android:name=".Activities.Acerca_de" />
         <activity android:name=".Activities.DetalleUbicacionActivity" />
         <activity android:name=".Activities.PrincipalActivity">
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@layout/searchable" />
         </activity>
-        <activity android:name=".Activities.SplashScreen">
+        <activity android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" android:name=".Activities.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.MainActivity" />
-        <activity android:name=".Activities.Desarrolladores" />
+        <activity android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" android:name=".Activities.Desarrolladores" />
     </application>
 
 </manifest>
