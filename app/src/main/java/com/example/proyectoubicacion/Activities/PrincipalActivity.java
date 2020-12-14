@@ -2,25 +2,16 @@ package com.example.proyectoubicacion.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.ContextMenu;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.Toast;
 
-import com.example.proyectoubicacion.Acerca_de;
-import com.example.proyectoubicacion.Activities.ListElement;
 import com.example.proyectoubicacion.Adaptadores.ListAdapter;
 import com.example.proyectoubicacion.R;
 import com.getbase.floatingactionbutton.FloatingActionButton;
@@ -33,8 +24,6 @@ public class PrincipalActivity extends AppCompatActivity{
 
     List<ListElement> elements;
     ListAdapter listAdapter;
-    SearchView svSearch;
-    private Context context;
     FloatingActionsMenu btn_grupoDeBotones;
     FloatingActionButton btn_desarrolladores, btn_salir, btn_acerca;
 
@@ -44,12 +33,10 @@ public class PrincipalActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
 
-        btn_desarrolladores = findViewById(R.id.desarrolladores);
-        btn_acerca =findViewById(R.id.acerca_de);
-        btn_salir = findViewById(R.id.salirr);
-        btn_grupoDeBotones = findViewById(R.id.boton);
-
-//        svSearch = findViewById(R.id.svSearch);
+        btn_desarrolladores = (FloatingActionButton) findViewById(R.id.desarrolladores);
+        btn_acerca = (FloatingActionButton) findViewById(R.id.acerca_de);
+        btn_salir = (FloatingActionButton) findViewById(R.id.salirr);
+        btn_grupoDeBotones = (FloatingActionsMenu) findViewById(R.id.boton);
 
 
         initValues();
@@ -215,10 +202,6 @@ public class PrincipalActivity extends AppCompatActivity{
     }
 
 
-//    private void initListener(){
-//        svSearch.setOnQueryTextListener(this);
-//    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.top_app_bar,menu);
@@ -240,26 +223,6 @@ public class PrincipalActivity extends AppCompatActivity{
                 return false;
             }
         });
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-
-        try{
-        switch(item.getItemId()){
-
-            case R.id.item1:
-                Intent intent = new Intent(PrincipalActivity.this, Acerca_de.class);
-                startActivityForResult(intent, 0);
-                Toast.makeText(getApplicationContext(),"Toast por defecto", Toast.LENGTH_SHORT).show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-        }catch(Exception e){
-            Toast.makeText(getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
         return true;
     }
 
