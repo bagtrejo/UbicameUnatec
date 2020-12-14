@@ -1,6 +1,7 @@
 package com.example.proyectoubicacion.Activities
 
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.proyectoubicacion.R
@@ -8,6 +9,7 @@ import com.synnapps.carouselview.CarouselView
 
 
 class DetalleUbicacionActivity : AppCompatActivity() {
+
 
     var aula: Array<String> = arrayOf(
 
@@ -23,7 +25,6 @@ class DetalleUbicacionActivity : AppCompatActivity() {
 
 
         val intent = intent
-        val posicion: Int = intent.getIntExtra("posicion", 0);
         val titulo: String? = intent.getStringExtra("titulo");
         val descripcion: String? = intent.getStringExtra("descripcion");
         val imagen: Int? = intent.getIntExtra("imagen", 0);
@@ -50,9 +51,9 @@ class DetalleUbicacionActivity : AppCompatActivity() {
 
         carouselView.pageCount = aula.size
 
-        carouselView.setImageClickListener{position ->
-            Toast.makeText(applicationContext, aula[position], Toast.LENGTH_LONG).show()
-        }
+        val texview : TextView = findViewById(R.id.txtDescripcion)
+
+        texview.setText(descripcion)
 
 
 
