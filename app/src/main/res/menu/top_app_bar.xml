@@ -8,8 +8,8 @@
         android:title="buscar"
         android:contentDescription="mas"
         app:showAsAction="always|collapseActionView"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"
-        />
+        app:actionViewClass="androidx.appcompat.widget.SearchView"/>
+
     <item
         android:id="@+id/item1"
         android:title="desarrolladores"
