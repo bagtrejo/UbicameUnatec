@@ -48,23 +48,14 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ListAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ListAdapter.ViewHolder holder, final int position) {
         holder.bindData(items.get(position));
-
-//        holder.cardView.setOnClickListener(new View.OnClickListener(){
-//
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
 
         holder.verMas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent intent = new Intent(context, DetalleUbicacionActivity.class);
-                intent.putExtra("posicion", position);
                 intent.putExtra("titulo", items.get(position).getTitulo());
                 intent.putExtra("descripcion", items.get(position).getDescripcion());
                 intent.putExtra("imagen", items.get(position).getImagen());
@@ -118,62 +109,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
             notifyDataSetChanged();
         }
     };
-
-//    public void filter (final String strSearch){
-//        if(strSearch.length() == 0){
-//            items.clear();
-//            items.addAll(originalItems);
-//        }
-//        else{
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//                items.clear();
-//                List<ListElement> collect = originalItems.stream()
-//                        .filter(i -> i.getTitulo().toLowerCase().contains(strSearch))
-//                        .collect(Collectors.toList());
-//
-//                items.addAll(collect);
-//            }
-//            else{
-//                items.clear();
-//                for (ListElement i: originalItems) {
-//                    if (i.getTitulo().toLowerCase().contains(strSearch)){
-//                        items.add(i);
-//                    }
-//
-//                }
-//            }
-//        }
-//        notifyDataSetChanged();
-//    }
-
-//    @Override
-//    public Filter getFilter() {
-//        return new Filter() {
-//            @Override
-//            protected FilterResults performFiltering(CharSequence constraint) {
-//                final FilterResults oReturn = new FilterResults();
-//                final List<ListElement> results = new ArrayList<>();
-//                if (originalItems == null)
-//                    originalItems  = items;
-//                if (constraint != null){
-//                    if(originalItems!=null & originalItems.size()>0 ){
-//                        for ( final ListElement g :originalItems) {
-//                            if (g.getTitulo().toLowerCase().contains(constraint.toString()))results.add(g);
-//                        }
-//                    }
-//                    oReturn.values = results;
-//                }
-//                return oReturn;
-//            }
-//
-//            @Override
-//            protected void publishResults(CharSequence constraint, FilterResults results) {
-//                items = (ArrayList<ListElement>)results.values;
-//                notifyDataSetChanged();
-//
-//            }
-//        };
-//    }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
