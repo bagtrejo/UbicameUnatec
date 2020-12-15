@@ -43,7 +43,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="16dp"
-                    android:text="Descripcion"
+                    android:text="Descripción"
                     android:textAppearance="?attr/textAppearanceHeadline6" />
 
                 <TextView
@@ -52,7 +52,8 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="16dp"
-                    android:paddingLeft="10dp"
+                    android:padding="10dp"
+                    android:justificationMode="inter_word"
                     android:text="esta aula esta cerca de los baños llegar
                     es muy facil solo tenes que caminar :) solo tenes que caminar"
                     android:textAppearance="?attr/textAppearanceBody2"
