@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.proyectoubicacion.PrincipalActivity
 import com.example.proyectoubicacion.R
 
 class SplashScreen : AppCompatActivity() {
